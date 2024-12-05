@@ -6,7 +6,23 @@ public class Main
   {
 
   }
+  public boolean isSelfDivisor(int number)
+  {
+    final int number1 = number
+    int digit;
+    while (number > 0)
+    {
+      digit = number % 10
+      number /= 10
+      if ((digit == 0) || (number1 % digit != 0))
+      {
+        return false;
+      }
+    }
+    return true;
+  }
 
+  public int firstNumSelfDivisors
   public int getPlayer2Move(int round)
   {
   int result;
@@ -30,20 +46,35 @@ public class Main
 
   public void playGame()
   {
-    int round;
+    int coinround1;
+    int coinround2;
     int coin1 = startingCoins;
     int coin2 = startingCoins;
     for (int round = 0; round < maxRounds; i++)
-    {
-      getPlayer1Move();
-      getPlayer2Move(round);
+    {    
+      coinround1 = getPlayer1Move();
+      coinround2 = getPlayer2Move(round);
+      coin1 -= coinround1
+      coin2 -= coinround2
+      if (coinround1 == coinround2)
+      {
+        coin2++
+      }
+      else if (((coinround1 + 1) == coinround2) || ((coinround1 - 1) == coinround2))
+      {
+        coin2++
+      }
+      else 
+      {
+        coin1 += 2
+      }
       if ((coin1 < 3) || (coin2 < 3))
       {
         if (coin1 > coin2)
         {
           return ("Player 1 wins");
         }
-        if (coin1 < coin2)
+        else if (coin1 < coin2)
         {
           return ("Player 2 wins");
         }
@@ -53,10 +84,19 @@ public class Main
         }
       }
     }
+    if (coin1 > coin2)
+    {
+      return ("Player 1 wins");
     }
-    if 
+    else if (coin1 < coin2)
+    {
+      return ("Player 2 wins");
+    }
+    else 
+    {
+      return ("tie game");
+    }
   }
-
 }
 //   public static void printNTimes(String word, int N)
 //   {
